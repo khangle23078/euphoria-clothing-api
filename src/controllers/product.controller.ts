@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
 import { CREATED, OK } from "http-status";
-import { getAll, getById, getBySlug, insert } from "../services/product.service";
+import { getAll, getById, getBySlug, insert, updateById } from "../services/product.service";
 
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -55,6 +55,19 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
     return res.status(CREATED).json({
       status: CREATED,
       message: 'Create product success'
+    })
+  } catch (error) {
+    return next(createHttpError[400](error as string))
+  }
+}
+
+export const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    await updateById(id, req.body)
+    return res.status(OK).json({
+      status: OK,
+      message: 'Update product success!'
     })
   } catch (error) {
     return next(createHttpError[400](error as string))
