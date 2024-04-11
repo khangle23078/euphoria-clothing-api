@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
 import { CREATED, OK } from "http-status";
-import { getAll, getBySlug, insert } from "../services/product.service";
+import { getAll, getById, getBySlug, insert } from "../services/product.service";
 
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -27,6 +27,19 @@ export const getProductBySlug = async (req: Request, res: Response, next: NextFu
   try {
     const { slug } = req.params;
     const product = await getBySlug(slug)
+    return res.status(OK).json({
+      status: OK,
+      data: product
+    })
+  } catch (error) {
+    return next(createHttpError[400](error as string))
+  }
+}
+
+export const getProductById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params
+    const product = await getById(id)
     return res.status(OK).json({
       status: OK,
       data: product
