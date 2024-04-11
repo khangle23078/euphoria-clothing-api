@@ -20,7 +20,8 @@ const productSchema = new Schema<IProduct>({
   },
   discount: {
     type: Number,
-    required: true
+    required: true,
+    default: 0
   },
   images: [
     {
@@ -36,7 +37,8 @@ const productSchema = new Schema<IProduct>({
   ],
   is_host: {
     type: Boolean,
-    require: true
+    require: true,
+    default: false
   },
   description: {
     type: String,
