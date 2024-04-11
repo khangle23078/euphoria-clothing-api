@@ -6,7 +6,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import { connectDB } from './databases/connect_mongo'
 import productRoute from './routes/product.route'
-
+import categoryRoute from './routes/category.route'
 const app: Application = express()
 
 app.use(json({ limit: '40mb' }))
@@ -16,6 +16,8 @@ app.use(cors())
 app.use(compression())
 app.use(morgan('combined'))
 app.use('/api/v1/products', productRoute)
+app.use('/api/v1/categories', categoryRoute)
+
 connectDB()
 
 const PORT = process.env.PORT || 5001

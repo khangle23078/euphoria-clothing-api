@@ -1,9 +1,5 @@
 import { ObjectId } from "mongoose"
-
-interface Image {
-  url: string,
-  public_id: string
-}
+import { Image } from "./image"
 
 interface Spec {
   key: string,
