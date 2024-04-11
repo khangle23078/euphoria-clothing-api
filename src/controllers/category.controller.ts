@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import { getAll, getById, insert, updateById } from "../services/category.service";
+import { deleteById, getAll, getById, insert, updateById } from "../services/category.service";
 import { CREATED, OK } from "http-status";
 
 export const createCategory = async (req: Request, res: Response, next: NextFunction) => {
@@ -50,5 +50,19 @@ export const updateCategory = async (req: Request, res: Response, next: NextFunc
     })
   } catch (error) {
     return next(createHttpError[400](error as string))
+  }
+}
+
+export const deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params
+    await deleteById(id)
+    return res.status(OK).json({
+      statuts: OK,
+      message: 'Delete category success'
+    })
+  } catch (error) {
+    return next(createHttpError[400](error as string))
+
   }
 }

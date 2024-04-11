@@ -17,3 +17,6 @@ export const updateById = (id: string, data: ICategory) => {
   return Category.findByIdAndUpdate(id, data)
 }
 
+export const deleteById = (id: string) => {
+  return Category.findByIdAndDelete(id)
+}
