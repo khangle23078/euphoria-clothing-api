@@ -25,3 +25,7 @@ export const insert = (data: IProduct) => {
 export const updateById = (id: string, data: IProduct) => {
   return Product.findByIdAndUpdate(id, data, { new: true })
 }
+
+export const deleteById = (id: string) => {
+  return Product.findByIdAndDelete(id)
+}
