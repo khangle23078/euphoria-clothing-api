@@ -8,7 +8,8 @@ export const getProducts = async (req: Request, res: Response, next: NextFunctio
     const limit = Number(req.query.limit) || 10
     const page = Number(req.query.page) || 1
     const orderBy = req.query.orderBy || 'desc'
-    const products = await getAll(page, limit, orderBy as string)
+    const name = req.query.name || ''
+    const products = await getAll(page, limit, orderBy as string, name as string)
     return res.status(OK).json({
       status: OK,
       data: products,

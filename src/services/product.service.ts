@@ -1,8 +1,8 @@
 import { IProduct } from "../interfaces/product"
 import { Product } from "../models/product.model"
 
-export const getAll = (page: number, limit: number, orderBy: string) => {
-  return Product.find()
+export const getAll = (page: number, limit: number, orderBy: string, name: string) => {
+  return Product.find({ $text: { $search: name } })
     .select(['name', 'slug', 'price', 'images', 'is_host', 'discount'])
     .skip((page - 1) * limit).limit(limit)
     .sort({

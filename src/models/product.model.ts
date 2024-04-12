@@ -4,7 +4,7 @@ import { IProduct } from "../interfaces/product";
 export const productSchema = new Schema<IProduct>({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   slug: {
     type: String,
@@ -64,5 +64,7 @@ export const productSchema = new Schema<IProduct>({
   collection: 'products',
   timestamps: true
 })
+
+productSchema.index({ 'name': 'text' })
 
 export const Product = model('products', productSchema)
