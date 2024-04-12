@@ -5,6 +5,10 @@ export const getByEmail = (email: string) => {
   return User.findOne({ email: email })
 }
 
+export const findById = (id: string) => {
+  return User.findById(id)
+}
+
 export const insert = (data: IUser) => {
   return User.create(data)
 }
