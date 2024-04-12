@@ -4,15 +4,15 @@ import { IProduct } from "../interfaces/product";
 const productSchema = new Schema<IProduct>({
   name: {
     type: String,
-    require: true
+    required: true
   },
   slug: {
     type: String,
-    require: true
+    required: true
   },
   price: {
     type: Number,
-    require: true
+    required: true
   },
   quantity: {
     type: Number,
@@ -37,12 +37,12 @@ const productSchema = new Schema<IProduct>({
   ],
   is_host: {
     type: Boolean,
-    require: true,
+    required: true,
     default: false
   },
   description: {
     type: String,
-    require: true
+    required: true
   },
   specs: [
     {

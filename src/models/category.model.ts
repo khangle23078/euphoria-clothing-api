@@ -4,12 +4,12 @@ import { ICategory } from "../interfaces/category";
 const categorySchema = new Schema<ICategory>({
   name: {
     type: String,
-    require: true
+    required: true
   },
   image: {
     url: {
       type: String,
-      require: true
+      required: true
     },
     public_id: {
       type: String,
