@@ -1,5 +1,6 @@
 import { Schema, Types, model } from "mongoose";
 import { IOrder } from "../interfaces/order";
+import { productSchema } from "./product.model";
 
 const orderSchema = new Schema<IOrder>({
   user_id: {
@@ -18,38 +19,10 @@ const orderSchema = new Schema<IOrder>({
     type: String,
     required: true
   },
-  products: [
-    {
-      _id: {
-        type: Types.ObjectId,
-        required: true
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      price: {
-        type: Number,
-        required: true
-      },
-      images: [
-        {
-          url: {
-            type: String,
-            required: true
-          },
-          public_id: {
-            type: String,
-            required: true
-          }
-        }
-      ],
-      quantity: {
-        type: Number,
-        required: true
-      }
-    }
-  ],
+  products: {
+    type: [productSchema],
+    default: []
+  },
   total_quantity: {
     type: Number,
     required: true
