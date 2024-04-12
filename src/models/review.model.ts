@@ -10,12 +10,12 @@ const reviewSchema = new Schema<IReview>({
     type: String,
     required: true
   },
-  product_id: {
+  product: {
     type: Types.ObjectId,
     ref: 'products',
     required: true
   },
-  user_id: {
+  user: {
     type: Types.ObjectId,
     ref: 'users',
     required: true
