@@ -8,3 +8,7 @@ export const getAll = () => {
 export const insert = (data: ISlide) => {
   return Slide.create(data)
 }
+
+export const updateById = (id: string, data: ISlide) => {
+  return Slide.findByIdAndUpdate(id, data)
+}
