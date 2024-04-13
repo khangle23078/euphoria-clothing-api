@@ -12,3 +12,7 @@ export const findById = (id: string) => {
 export const insert = (data: IUser) => {
   return User.create(data)
 }
+
+export const updateById = (id: string, data: IUser) => {
+  return User.findByIdAndUpdate(id)
+}

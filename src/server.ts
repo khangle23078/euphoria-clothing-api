@@ -11,6 +11,8 @@ import authRoute from './routes/auth.route'
 import uploadRoute from './routes/upload.route'
 import orderRoute from './routes/order.route'
 import reviewRoute from './routes/review.route'
+import userRoute from './routes/user.route'
+
 const app: Application = express()
 
 app.use(json({ limit: '40mb' }))
@@ -25,6 +27,7 @@ app.use('/api/v1/auth', authRoute)
 app.use('/api/v1/file', uploadRoute)
 app.use('/api/v1/orders', orderRoute)
 app.use('/api/v1/reviews', reviewRoute)
+app.use('/api/v1/users', userRoute)
 connectDB()
 
 const PORT = process.env.PORT || 5001
