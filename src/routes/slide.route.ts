@@ -6,5 +6,6 @@ const route = Router()
 route.get('/', getSlides)
 route.post('/', createslide)
 route.put('/:id', updateSlide)
+route.delete('/:id',)
 
 export default route

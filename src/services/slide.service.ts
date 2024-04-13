@@ -12,3 +12,7 @@ export const insert = (data: ISlide) => {
 export const updateById = (id: string, data: ISlide) => {
   return Slide.findByIdAndUpdate(id, data)
 }
+
+export const deleteById = (id: string) => {
+  return Slide.findByIdAndDelete(id)
+}
