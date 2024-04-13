@@ -1,4 +1,4 @@
-import { ObjectId } from "mongoose"
+import { Types } from "mongoose"
 import { Image } from "./image"
 
 interface Spec {
@@ -16,6 +16,6 @@ export interface IProduct {
   is_host: boolean,
   description: string,
   specs: Spec[],
-  category_id: ObjectId
+  category_id: Types.ObjectId
 }
 

@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import { deleteById, getAll, getById, insert, updateById } from "../services/category.service";
-import { CREATED, OK } from "http-status";
+import { deleteById, getAll, getById, getBySlug, insert, updateById } from "../services/category.service";
+import { BAD_REQUEST, CREATED, OK } from "http-status";
+import { getAllByCategoryId } from "../services/product.service";
 
 export const createCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -12,6 +13,23 @@ export const createCategory = async (req: Request, res: Response, next: NextFunc
     })
   } catch (error) {
     return next(createHttpError[400](error as string))
+  }
+}
+
+export const getProductsByCategorySlug = async (req: Request, res: Response) => {
+  try {
+    const { slug } = req.params
+    const category = await getBySlug(slug)
+    const products = await getAllByCategoryId(category?._id)
+    return res.status(OK).json({
+      status: OK,
+      data: products
+    })
+  } catch (error) {
+    return res.status(BAD_REQUEST).json({
+      status: BAD_REQUEST,
+      messag: error
+    })
   }
 }
 

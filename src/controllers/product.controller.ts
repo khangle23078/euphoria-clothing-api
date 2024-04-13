@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import { CREATED, OK } from "http-status";
+import { BAD_REQUEST, CREATED, OK } from "http-status";
 import { deleteById, getAll, getById, getBySlug, insert, updateById } from "../services/product.service";
 
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
@@ -8,8 +8,7 @@ export const getProducts = async (req: Request, res: Response, next: NextFunctio
     const limit = Number(req.query.limit) || 10
     const page = Number(req.query.page) || 1
     const orderBy = req.query.orderBy || 'desc'
-    const name = req.query.name || ''
-    const products = await getAll(page, limit, orderBy as string, name as string)
+    const products = await getAll(page, limit, orderBy as string)
     return res.status(OK).json({
       status: OK,
       data: products,
@@ -20,9 +19,14 @@ export const getProducts = async (req: Request, res: Response, next: NextFunctio
       }
     })
   } catch (error) {
-    return next(createHttpError[400](error as string))
+    return res.status(BAD_REQUEST).json({
+      status: BAD_REQUEST,
+      message: error
+    })
   }
 }
+
+
 
 export const getProductBySlug = async (req: Request, res: Response, next: NextFunction) => {
   try {

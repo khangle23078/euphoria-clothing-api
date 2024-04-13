@@ -1,7 +1,6 @@
 import { Schema, Types, model } from "mongoose";
-import { IProduct } from "../interfaces/product";
 
-export const productSchema = new Schema<IProduct>({
+export const productSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -56,7 +55,7 @@ export const productSchema = new Schema<IProduct>({
       }
     }
   ],
-  category_id: {
+  category: {
     type: Types.ObjectId,
     ref: 'categories'
   },

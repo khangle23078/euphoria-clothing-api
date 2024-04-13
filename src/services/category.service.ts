@@ -9,6 +9,10 @@ export const getById = (id: string) => {
   return Category.findById(id)
 }
 
+export const getBySlug = (slug: string) => {
+  return Category.findOne({ slug: slug })
+}
+
 export const insert = (data: ICategory) => {
   return Category.create(data)
 }
