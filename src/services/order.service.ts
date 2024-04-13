@@ -8,3 +8,7 @@ export const insert = (data: IOrder) => {
 export const getByUserId = (userId: string) => {
   return Order.find({ user_id: userId })
 }
+
+export const updateById = (id: string, status: string) => {
+  return Order.findByIdAndUpdate(id, { status: status })
+}

@@ -3,7 +3,7 @@ import { IOrder } from "../interfaces/order";
 import { productSchema } from "./product.model";
 
 const orderSchema = new Schema<IOrder>({
-  user_id: {
+  user: {
     type: Types.ObjectId,
     ref: 'users'
   },
