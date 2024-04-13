@@ -19,11 +19,19 @@ export const createCategory = async (req: Request, res: Response, next: NextFunc
 export const getProductsByCategorySlug = async (req: Request, res: Response) => {
   try {
     const { slug } = req.params
+    const limit = Number(req.query.limit) || 10;
+    const page = Number(req.query.page) || 1
+    const sort = req.query.sortBy || 'asc'
     const category = await getBySlug(slug)
-    const products = await getAllByCategoryId(category?._id)
+    const products = await getAllByCategoryId(category?._id, limit, page, sort as string)
     return res.status(OK).json({
       status: OK,
-      data: products
+      data: products,
+      paginate: {
+        current_page: 1,
+        total_page: Math.round(products.length / limit),
+        total_items: products.length
+      }
     })
   } catch (error) {
     return res.status(BAD_REQUEST).json({
