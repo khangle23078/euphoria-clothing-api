@@ -5,6 +5,10 @@ export const insert = (data: IOrder) => {
   return Order.create(data)
 }
 
+export const getAll = () => {
+  return Order.find()
+}
+
 export const getByUserId = (userId: string) => {
   return Order.find({ user_id: userId })
 }

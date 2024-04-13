@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { createOrder, getOrdersByUserId, updateOrderStatus } from "../controllers/order.controller";
+import { createOrder, getOrders, getOrdersByUserId, updateOrderStatus } from "../controllers/order.controller";
 
 const route = Router()
 
+route.get('/', getOrders)
 route.post('/', createOrder)
 route.get('/:userId', getOrdersByUserId)
 route.put('/:id', updateOrderStatus)

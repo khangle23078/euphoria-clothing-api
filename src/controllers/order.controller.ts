@@ -1,7 +1,22 @@
 import { Request, Response } from "express";
-import { getByUserId, insert, updateById } from "../services/order.service";
+import { getAll, getByUserId, insert, updateById } from "../services/order.service";
 import { BAD_REQUEST, OK } from "http-status";
 import { IOrder } from "../interfaces/order";
+
+export const getOrders = async (req: Request, res: Response) => {
+  try {
+    const orders = await getAll()
+    return res.status(OK).json({
+      status: OK,
+      data: orders
+    })
+  } catch (error) {
+    return res.status(BAD_REQUEST).json({
+      status: BAD_REQUEST,
+      message: error
+    })
+  }
+}
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
