@@ -1,10 +1,10 @@
-import { Router } from "express";
-import { upload } from "../configs/cloudinary.config";
-import { deleteFile, uploadSingleFile } from "../controllers/upload.controller";
+import {Router} from "express";
+import {upload} from "../configs/cloudinary.config";
+import {deleteFile, uploadSingleFile} from "../controllers/upload.controller";
 
-const route = Router()
+const route = Router();
 
-route.post('/upload/single', upload.single('image'), uploadSingleFile)
-route.post('/delete', deleteFile)
+route.post("/upload/single", upload.single("file"), uploadSingleFile);
+route.post("/delete", deleteFile);
 
-export default route
+export default route;
