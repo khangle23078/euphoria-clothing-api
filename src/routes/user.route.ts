@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { updateUserProfile } from "../controllers/user.controller";
+import {Router} from "express";
+import {getUser, updateUserProfile} from "../controllers/user.controller";
 
-const route = Router()
+const route = Router();
 
-route.put('/:id', updateUserProfile)
+route.get("/:email", getUser);
+route.put("/:id", updateUserProfile);
 
-export default route
+export default route;

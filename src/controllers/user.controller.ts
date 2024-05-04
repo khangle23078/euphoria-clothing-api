@@ -1,19 +1,35 @@
-import { Request, Response } from "express";
-import { BAD_REQUEST, OK } from "http-status";
-import { updateById } from "../services/user.service";
+import {Request, Response} from "express";
+import {BAD_REQUEST, OK} from "http-status";
+import {getByEmail, updateById} from "../services/user.service";
 
-export const updateUserProfile = async (req: Request, res: Response) => {
+export const getUser = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    await updateById(id, req.body)
+    const {email} = req.params;
+    const user = getByEmail(email);
     return res.status(OK).json({
       status: OK,
-      message: 'Cập nhật profile thành công'
-    })
+      data: user,
+    });
   } catch (error) {
     return res.status(BAD_REQUEST).json({
       status: BAD_REQUEST,
-      message: error
-    })
+      message: error,
+    });
   }
-}
+};
+
+export const updateUserProfile = async (req: Request, res: Response) => {
+  try {
+    const {id} = req.params;
+    await updateById(id, req.body);
+    return res.status(OK).json({
+      status: OK,
+      message: "Cập nhật profile thành công",
+    });
+  } catch (error) {
+    return res.status(BAD_REQUEST).json({
+      status: BAD_REQUEST,
+      message: error,
+    });
+  }
+};
